@@ -24,6 +24,7 @@
 
   body {
     color: var(--cream);
+    font-family: "Oswald", system-ui, sans-serif;
     background:
       radial-gradient(circle at 24% 18%, rgba(215, 75, 31, 0.18), transparent 22rem),
       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -54,6 +55,7 @@
   }
 
   h1, h2, h3 {
+    font-family: "Anton", Impact, sans-serif;
     font-weight: 400;
     margin: 0;
     text-transform: uppercase;
@@ -115,9 +117,29 @@
     position: relative;
   }
 
-  .hero::after,
-  .black-band::before,
-  .paper-band::before {
+  .paper-band,
+  .black-band {
+    position: relative;
+  }
+
+  .paper-band {
+    background:
+      radial-gradient(circle, rgba(13,12,9,0.18) 0 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.18), transparent 30%, rgba(0,0,0,0.08)),
+      var(--paper);
+    background-size: 18px 18px, auto, auto;
+    color: var(--ink);
+  }
+
+  .black-band {
+    background:
+      radial-gradient(circle, rgba(245,231,198,0.13) 0 1px, transparent 1px),
+      var(--ink);
+    background-size: 22px 22px, auto;
+    color: var(--paper);
+  }
+
+  .black-band::before {
     background:
       linear-gradient(90deg, transparent, rgba(0,0,0,0.9) 12%, rgba(0,0,0,0.9) 88%, transparent),
       repeating-linear-gradient(90deg, transparent 0 13px, rgba(245,231,198,0.45) 13px 15px, transparent 15px 28px);
