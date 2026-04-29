@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import heroBadge from '../assets/images/hero-pigeon-badge-transparent.png';
+import bandLineup from '../assets/images/band-pigeon-lineup.png';
 
 const bandmates = [
   { name: "Abbie", role: "Vocals", variant: "vocal", accessory: "mic" },
@@ -113,11 +116,12 @@ const shows = [
           </div>
 
           <div class="poster-art" aria-label="Illustration of a punk pigeon in a leather jacket">
-            <img
-              src="/hero-pigeon-badge-transparent.png"
+            <Image
+              src={heroBadge}
               alt="Circular The Flying Pigeons badge with a punk pigeon in a leather jacket, Texas silhouette, stars, and music notes."
-              width="1254"
-              height="1254"
+              widths={[400, 800, 1254]}
+              sizes="(max-width: 980px) 100vw, 700px"
+              loading="eager"
             />
           </div>
         </div>
@@ -188,11 +192,11 @@ const shows = [
             <span class="star">★</span>
           </div>
           <div class="band-poster">
-            <img
-              src="/band-pigeon-lineup.png"
+            <Image
+              src={bandLineup}
               alt="The Flying Pigeons band lineup: Abbie on vocals, Carlos on guitars and vocals, Caleb on drums, Frank on bass, Paul on vocals, and DJ Elder as MC and DJ."
-              width="1536"
-              height="1024"
+              widths={[600, 1200, 1536]}
+              sizes="(max-width: 1220px) 100vw, 1220px"
               loading="lazy"
             />
             <ul class="sr-only">
