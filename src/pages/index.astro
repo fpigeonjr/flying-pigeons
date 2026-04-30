@@ -213,10 +213,11 @@ const shows = [
           <div>
             <h2>Stay in the Loop</h2>
             <p>Get show updates, new music, and other pigeon news.</p>
-            <form class="email-form">
-              <input type="email" placeholder="Your email address" aria-label="Email address" />
+            <form id="subscribe-form" class="email-form">
+              <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required />
               <button type="submit">Subscribe</button>
             </form>
+            <p id="subscribe-feedback" aria-live="polite" style="margin-top:0.75rem;font-size:0.95rem;min-height:1.5rem;"></p>
           </div>
 
           <div class="badge" aria-label="Texas punk feathered and fearless badge">
@@ -247,5 +248,49 @@ const shows = [
         </div>
       </footer>
     </main>
+    <script>
+      (function() {
+        const form = document.getElementById('subscribe-form');
+        const feedback = document.getElementById('subscribe-feedback');
+        if (!form || !feedback) return;
+
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const email = form.email.value;
+          const btn = form.querySelector('button[type="submit"]');
+          const originalText = btn.textContent;
+
+          btn.disabled = true;
+          btn.textContent = 'Subscribing...';
+          feedback.textContent = '';
+          feedback.style.color = '';
+
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              feedback.style.color = '#789078';
+              feedback.textContent = data.message;
+              form.reset();
+            } else {
+              feedback.style.color = '#d74b1f';
+              feedback.textContent = data.error || 'Something went wrong.';
+            }
+          } catch (err) {
+            feedback.style.color = '#d74b1f';
+            feedback.textContent = 'Network error. Please try again.';
+          } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

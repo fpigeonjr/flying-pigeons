@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration
+name = "flying-pigeons"
+compatibility_date = "2025-04-28"
+
+# KV namespace for email subscribers
+# Create this in the Cloudflare Dashboard → Workers & Pages → KV → Create namespace
+# Then bind it to your Pages project: Dashboard → Pages → flying-pigeons → Settings → Functions → KV namespace bindings
+# Name: SUBSCRIBERS
+# Replace the id below with your actual namespace ID (or remove this line and configure in the dashboard)
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "YOUR_KV_NAMESPACE_ID_HERE"
