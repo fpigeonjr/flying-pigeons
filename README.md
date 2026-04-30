@@ -9,7 +9,7 @@ Flying Pigeons band website — Texas punk, feathered and fearless.
 
 ## Stack
 
-- [Astro](https://astro.build) v5.13.7
+- [Astro](https://astro.build) v5.18.1
 - [Tailwind CSS v3](https://tailwindcss.com)
 - [React](https://react.dev) (Astro integration)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -28,13 +28,20 @@ npm run preview  # preview production build
 
 Global styles and complex component CSS live in `src/styles/global.css`. Tailwind utility classes are used for layout and typography throughout `src/pages/index.astro`. Custom Tailwind config is in `tailwind.config.js`.
 
+## Architecture
+
+- `src/pages/index.astro` — main landing page
+- `src/assets/images/` — source images optimized at build time via Astro `<Image>`
+- `functions/api/subscribe.ts` — Cloudflare Pages Function for email subscriptions
+- `wrangler.toml` — Cloudflare bindings configuration
+
 ## Features
 
 - Single-page landing site with responsive design
 - Featured video integration
 - Shows/Tour dates section
 - Band member lineup
-- Email subscription (form placeholder)
+- Email subscription via Cloudflare Pages Function + KV
 - Social media integration
 
 ## Get Involved

@@ -29,3 +29,6 @@ Thumbs.db
 # Optional: local preview cache
 .astro/types/
 
+# Wrangler local state
+.wrangler/
+
